@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\DataMaster;
 
 use App\Http\Controllers\Controller;
+use App\Models\TransportationType;
 use Illuminate\Http\Request;
 
 class TransportationTypeController extends Controller
@@ -14,7 +15,9 @@ class TransportationTypeController extends Controller
      */
     public function index()
     {
-        //
+        $data = TransportationType::all();
+        
+        return view('data-master.transportation-type.index', compact('data'));
     }
 
     /**

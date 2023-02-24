@@ -1,7 +1,12 @@
 <?php
 
+use App\Http\Controllers\DataMaster\RouteController;
+use App\Http\Controllers\DataMaster\TransportationController;
+use App\Http\Controllers\DataMaster\TransportationTypeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Report\ReservationController as ReportReservationController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +30,29 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::group([
+        'prefix' => 'data-master',
+        'as' => 'data-master.'
+    ], function() {
+        Route::resource('transportation-type', TransportationTypeController::class);
+        Route::resource('transportation', TransportationController::class);
+        Route::resource('route', RouteController::class);
+    }); 
+
+    Route::group([
+        'prefix' => 'reports',
+        'as' => 'reports.'
+    ], function() {
+        Route::get('reservation', [ReportReservationController::class, 'index'])->name('reservation.index');
+    }); 
+
+    Route::group([
+        'prefix' => 'setting',
+        'as' => 'setting.'
+    ], function() {
+        Route::get('application', [SettingController::class, 'application'])->name('application.index');
+    }); 
 });
 
 require __DIR__.'/auth.php';

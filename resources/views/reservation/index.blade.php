@@ -1,11 +1,6 @@
 @extends('reservation.layouts.app')
 @section('content')
-<section id="reservation">
-    <section id="hero">
-
-    </section>
-    <section id="reservation-body">
-
-    </section>
-</section>
+<h1 class="text-center">
+    Coming soon.
+</h1>
 @endsection
