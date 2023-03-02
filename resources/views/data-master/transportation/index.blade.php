@@ -3,11 +3,11 @@
 <div class="page-breadcrumb">
 <div class="row">
     <div class="col-7 align-self-center">
-        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Tipe Transportasi</h3>
+        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Daftar Transportasi</h3>
         <div class="d-flex align-items-center">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb m-0 p-0">
-                    <li class="breadcrumb-item"><a href="{{route('data-master.transportation-type.index')}}">Transportation Type</a>
+                    <li class="breadcrumb-item"><a href="{{route('data-master.transportation.index')}}">Transportation</a>
                     </li>
                 </ol>
             </nav>
@@ -27,7 +27,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{route('data-master.transportation-type.create')}}" class="btn btn-outline-success btn-sm btn-rounded mb-2">
+                    <a href="{{route('data-master.transportation.create')}}" class="btn btn-outline-success btn-sm btn-rounded mb-2">
                         <i class="fas fa-plus-circle me-1"></i> Tambah Data
                     </a>
                     <div class="table-responsive">
@@ -35,8 +35,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Tipe</th>
+                                    <th>Kode</th>
                                     <th>Deskripsi</th>
+                                    <th>Jumlah Kursi</th>
+                                    <th>Tipe</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
@@ -44,14 +46,16 @@
                                 @foreach ($data as $key => $item)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td>{{$item->type}}</td>
+                                    <td>{{$item->code}}</td>
                                     <td>{{$item->description}}</td>
+                                    <td>{{$item->seat_qty}}</td>
+                                    <td>{{$item->type->type}}</td>
                                     <td class="d-flex">
-                                        <a href="{{route('data-master.transportation-type.edit', $item->id)}}" 
+                                        <a href="{{route('data-master.transportation.edit', $item->id)}}" 
                                             class="btn btn-sm btn-primary">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form action="{{route('data-master.transportation-type.destroy', $item->id)}}" method="POST">
+                                        <form action="{{route('data-master.transportation.destroy', $item->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">

@@ -19,9 +19,9 @@
     </div>
     <div class="col-5 align-self-center">
         <div class="customize-input float-end">
-            <select class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius disabled">
-                <option selected>{{now()->format('d F Y')}}</option>
-            </select>
+            <div class="btn btn-rounded btn-primary disabled">
+                <i class="far fa-calendar-alt me-2"></i>{{now()->format('d F Y')}}
+            </div>
         </div>
     </div>
 </div>

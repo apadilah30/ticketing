@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ReservationController::class, 'index'])->name('index');
+Route::get('/order/{type}', [ReservationController::class, 'order'])->name('order');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -45,13 +46,7 @@ Route::middleware('auth')->group(function () {
         'as' => 'reports.'
     ], function() {
         Route::get('reservation', [ReportReservationController::class, 'index'])->name('reservation.index');
-    }); 
-
-    Route::group([
-        'prefix' => 'setting',
-        'as' => 'setting.'
-    ], function() {
-        Route::get('application', [SettingController::class, 'application'])->name('application.index');
+        Route::get('reservation-export', [ReportReservationController::class, 'pdf'])->name('reservation.pdf');
     }); 
 });
 

@@ -17,12 +17,19 @@
     <link href="{{ asset('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('css/style.min.css') }}" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <style>
+        .page-wrapper{
+            background-image: url({{asset('assets/images/big/3.jpg')}});
+            height: 100vh;
+            background-position: center;
+            background-size: cover;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 0;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,7 +46,7 @@
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <div id="main-wrapper" data-theme="light" data-layout="horizontal" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="collapse" data-header-position="fixed" data-boxed-layout="full">
+        data-sidebar-position="collapse" data-header-position="fixed" data-boxed-layout="full" >
         @include('reservation.layouts.navbar')
         <!-- ============================================================== -->
         <!-- Page wrapper  -->

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('depart_at');
             $table->string('route_from');
             $table->string('route_to');
-            $table->integer('price');
+            $table->integer('price_economy');
+            $table->integer('price_business');
+            $table->integer('price_vip');
             $table->unsignedBigInteger('transportation_id');
             $table->timestamps();
             

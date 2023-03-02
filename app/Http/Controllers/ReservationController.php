@@ -12,9 +12,7 @@ class ReservationController extends Controller
     public function index()
     {
         $data = [
-            'transportation_types' => TransportationType::all(),
-            'transportations' => Transportation::all(),
-            'routes' => Route::all()
+            'transportation_types' => TransportationType::all()
         ];
 
         return view('reservation.index', $data);

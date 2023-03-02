@@ -10,14 +10,15 @@
             </div>
             <h2 class="mt-3 text-center">Login</h2>
             <p class="text-center">Login untuk melanjutkan</p>
-            <form class="mt-4">
+            <form action="{{route('login')}}" class="mt-4" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group mb-3">
                             <label class="form-label text-dark" for="email">Email</label>
                             <input class="form-control" id="email" type="email" name="email" value="{{old('email')}}" required autofocus autocomplete="username">
                             @error('email')
-                            <p class="bg-info p-2"> {{$message}} </p>
+                            <p class="bg-primary text-white rounded mt-1 py-1 px-2 small"> {{$message}} </p>
                             @enderror
                         </div>
                     </div>
@@ -26,7 +27,7 @@
                             <label class="form-label text-dark" for="passwor">Password</label>
                             <input class="form-control" id="passwor" type="password" name="password" required autocomplete="current-password">
                             @error('password')
-                            <p class="bg-info p-2"> {{$message}} </p>
+                            <p class="bg-primary text-white rounded mt-1 py-1 px-2 small"> {{$message}} </p>
                             @enderror
                         </div>
                     </div>

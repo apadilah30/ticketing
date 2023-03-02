@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\DataMaster;
 
 use App\Http\Controllers\Controller;
+use App\Models\Route as Rute;
+use App\Models\Transportation;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -14,7 +16,9 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        $data = Rute::all();
+
+        return view('data-master.route.index', compact('data'));
     }
 
     /**
@@ -24,7 +28,9 @@ class RouteController extends Controller
      */
     public function create()
     {
-        //
+        $transportation = Transportation::all();
+
+        return view('data-master.route.create', compact('transportation'));
     }
 
     /**
@@ -35,7 +41,27 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'depart_at' => 'required',
+            'route_from' => 'required',
+            'route_to' => 'required',
+            'price_economy' => 'required|numeric|min:0',
+            'price_business' => 'required|numeric|min:0',
+            'price_vip' => 'required|numeric|min:0',
+            'transportation' => 'required'
+        ]);
+
+        Rute::create([
+            'depart_at' => $request->depart_at,
+            'route_from' => $request->route_from,
+            'route_to' => $request->route_to,
+            'price_economy' => $request->price_economy,
+            'price_business' => $request->price_business,
+            'price_vip' => $request->price_vip,
+            'transportation_id' => $request->transportation,
+        ]);
+
+        return redirect()->route('data-master.route.index');
     }
 
     /**
@@ -57,7 +83,12 @@ class RouteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Rute::find($id);
+        $transportation = Transportation::all();
+
+        return view('data-master.route.edit', compact([
+            'data','transportation'
+        ]));
     }
 
     /**
@@ -69,7 +100,25 @@ class RouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'depart_at' => 'required',
+            'route_from' => 'required',
+            'route_to' => 'required',
+            'price' => 'required|numeric|min:0',
+            'transportation' => 'required'
+        ]);
+
+        $route = Rute::find($id);
+        
+        $route->update([
+            'depart_at' => $request->depart_at,
+            'route_from' => $request->route_from,
+            'route_to' => $request->route_to,
+            'price' => $request->price,
+            'transportation_id' => $request->transportation,
+        ]);
+
+        return redirect()->route('data-master.route.index');
     }
 
     /**
@@ -80,6 +129,9 @@ class RouteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Rute::find($id);
+        $data->delete();
+
+        return redirect()->route('data-master.route.index');
     }
 }

@@ -27,7 +27,7 @@ class TransportationTypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('data-master.transportation-type.create');
     }
 
     /**
@@ -38,7 +38,17 @@ class TransportationTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'type' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        TransportationType::create([
+            'type' => $request->type,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('data-master.transportation-type.index');
     }
 
     /**
@@ -58,9 +68,11 @@ class TransportationTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($transportation)
     {
-        //
+        $data = TransportationType::find($transportation);
+
+        return view('data-master.transportation-type.edit', compact('data'));
     }
 
     /**
@@ -72,7 +84,20 @@ class TransportationTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $validated = $request->validate([
+            'type' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        $data = TransportationType::find($id);
+        
+        $data->update([
+            'type' => $request->type,
+            'description' => $request->description
+        ]);
+
+        return redirect()->route('data-master.transportation-type.index');
     }
 
     /**
@@ -83,6 +108,10 @@ class TransportationTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = TransportationType::find($id);
+
+        $data->delete();
+        
+        return redirect()->route('data-master.transportation-type.index');
     }
 }
