@@ -19,6 +19,8 @@ class RoleChecker
     {
         if(Auth::user()->level == $role){
             return $next($request);
+        } else {
+            return redirect()->route('index')->with('message','Anda tidak memiliki akses!');
         }
     }
 }

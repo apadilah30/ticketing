@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
-    public function index(Request $request, $type)
+    public function index(Request $request)
     {
         $data = [
             'transportation_types' => TransportationType::all()
@@ -20,6 +20,17 @@ class ReservationController extends Controller
 
     public function order(Request $request, $type)
     {
-        dd($type);
+        $data = Route::with(['transportation.type'])->whereHas('transportation', function($query)use($type){
+            $query->where('transportation_type_id', $type);
+        })->get();
+
+        $data_type = TransportationType::find($type);
+
+        return view('reservation.order', compact(['data','data_type']));
+    }
+
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }

@@ -5,7 +5,7 @@
     <nav class="navbar top-navbar navbar-expand-lg">
         <div class="container justify-content-between">
             <div class="navbar-brand text-primary fw-bold">
-                Travely
+                <a href="{{route('index')}}">Travely</a>
             </div>
             <div class="button-group">
                 @guest
@@ -15,7 +15,15 @@
 
                 @auth
                 @if (Auth::user()->level  == 'SUPER_ADMIN')
-                <a href="{{route('dashboard')}}" class="btn btn-primary btn-rounded fw-bold">Dashboard</a>
+                <div class="d-flex align-items-center">
+                    <a href="{{route('dashboard')}}" class="btn btn-primary btn-rounded fw-bold me-2">Dashboard</a>
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button class="btn btn-transparent shadow-none text-primary fw-bold" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </div>
                 @else
                 <div class="navbar-collapse collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav float-left me-auto ms-3 ps-1">

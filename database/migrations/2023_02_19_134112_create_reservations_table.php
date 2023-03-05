@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('reservation_code')->unique();
             $table->date('reservation_at');
             $table->date('reservation_date');
-            $table->enum('class', ['economy','business']);
+            $table->string('class');
             $table->string('seat_code');
             $table->string('depart_at');
             $table->integer('price');

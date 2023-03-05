@@ -1,6 +1,11 @@
 @extends('reservation.layouts.app')
 @section('content')
 <div class="container">
+    @if (session('message'))
+    <div class="alert alert-danger">
+        {{ session('message') }}
+    </div>
+    @endif
     <div class="card">
         <div class="card-body text-center p-5">
             <h3 class="mb-4">
