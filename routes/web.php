@@ -6,7 +6,6 @@ use App\Http\Controllers\DataMaster\TransportationTypeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Report\ReservationController as ReportReservationController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
